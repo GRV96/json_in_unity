@@ -14,9 +14,17 @@ public class Ajxo : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	private AjxoSerializer Serializer
 	{
-		_serializer = GetComponent<AjxoSerializer>();
+		get
+		{
+			if(_serializer == null)
+			{
+				_serializer = GetComponent<AjxoSerializer>();
+			}
+
+			return _serializer;
+		}
 	}
 
 	public GameObject GetCube(int pCubeIndex)
@@ -31,17 +39,21 @@ public class Ajxo : MonoBehaviour
 
 	public void ReadJson()
 	{
-		if(_serializer)
+		AjxoSerializer serializer = Serializer;
+
+		if(serializer)
 		{
-			_serializer.ReadAjxo(this);
+			serializer.ReadAjxo(this);
 		}
 	}
 
 	public void WriteAsJson()
 	{
-		if(_serializer)
+		AjxoSerializer serializer = Serializer;
+
+		if(serializer)
 		{
-			_serializer.SerializeAjxo(this);
+			serializer.SerializeAjxo(this);
 		}
 	}
 }
