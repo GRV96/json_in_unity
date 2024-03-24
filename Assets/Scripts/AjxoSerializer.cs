@@ -40,12 +40,13 @@ public class AjxoSerializer : MonoBehaviour
 
 	public bool ReadAjxo(Ajxo pAjxo)
 	{
-		if(!string.IsNullOrEmpty(_filePath) || !File.Exists(_filePath))
+		if(string.IsNullOrEmpty(_filePath) || !File.Exists(_filePath))
 		{
 			return false;
 		}
 
-		AjxoData ajxoData = JsonUtility.FromJson<AjxoData>(_filePath);
+		string jsonData = File.ReadAllText(_filePath);
+		AjxoData ajxoData = JsonUtility.FromJson<AjxoData>(jsonData);
 		int nbCubes = pAjxo.NbCubes;
 		Point[] blockPositions = ajxoData.blockPositions;
 
