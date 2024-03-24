@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // "Ajxo" means "thing" in Esperanto.
 public class Ajxo : MonoBehaviour
 {
 	[SerializeField] private GameObject[] _cubes;
+	private AjxoSerializer _serializer;
 
 	public int NbCubes
 	{
@@ -17,12 +16,7 @@ public class Ajxo : MonoBehaviour
 
 	void Awake()
 	{
-		//
-	}
-
-	void Update()
-	{
-		//
+		_serializer = GetComponent<AjxoSerializer>();
 	}
 
 	public GameObject GetCube(int pCubeIndex)
@@ -33,5 +27,21 @@ public class Ajxo : MonoBehaviour
 		}
 
 		return _cubes[pCubeIndex];
+	}
+
+	public void ReadJson()
+	{
+		if(_serializer)
+		{
+			_serializer.ReadAjxo(this);
+		}
+	}
+
+	public void WriteAsJson()
+	{
+		if(_serializer)
+		{
+			_serializer.SerializeAjxo(this);
+		}
 	}
 }

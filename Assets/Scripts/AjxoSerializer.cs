@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -41,7 +40,7 @@ public class AjxoSerializer : MonoBehaviour
 
 	public bool ReadAjxo(Ajxo pAjxo)
 	{
-		if(!File.Exists(_filePath))
+		if(!string.IsNullOrEmpty(_filePath) || !File.Exists(_filePath))
 		{
 			return false;
 		}
