@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac720b6535a0364abeef631a03304bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _filePath: test.json
+  _filePath: ajxo_test.json
 --- !u!1 &8747592187185518630 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7465614731689683606, guid: 9d8ea0b7f40139c4d920a0a8f771ca05, type: 3}
