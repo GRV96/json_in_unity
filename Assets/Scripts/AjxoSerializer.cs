@@ -27,6 +27,20 @@ public class AjxoSerializer : MonoBehaviour
 	}
 
 	[SerializeField] private string _filePath;
+	private Ajxo _ajxo;
+
+	private Ajxo SerializedAjxo
+	{
+		get
+		{
+			if(_ajxo == null)
+			{
+				_ajxo = GetComponent<Ajxo>();
+			}
+
+			return _ajxo;
+		}
+	}
 
 	private static Vector3 PointToVector3(Point pPoint)
 	{
@@ -38,16 +52,18 @@ public class AjxoSerializer : MonoBehaviour
 		return new Point(pVector.x, pVector.y, pVector.z);
 	}
 
-	public bool ReadAjxo(Ajxo pAjxo)
+	public bool ReadAjxo()
 	{
-		if(string.IsNullOrEmpty(_filePath) || !File.Exists(_filePath))
+		Ajxo ajxo = SerializedAjxo;
+
+		if(ajxo==null || string.IsNullOrEmpty(_filePath) || !File.Exists(_filePath))
 		{
 			return false;
 		}
 
 		string jsonData = File.ReadAllText(_filePath);
 		AjxoData ajxoData = JsonUtility.FromJson<AjxoData>(jsonData);
-		int nbCubes = pAjxo.NbCubes;
+		int nbCubes = ajxo.NbCubes;
 		Point[] blockPositions = ajxoData.blockPositions;
 
 		if(blockPositions.Length != nbCubes)
@@ -55,26 +71,28 @@ public class AjxoSerializer : MonoBehaviour
 			return false;
 		}
 
-		pAjxo.transform.position = PointToVector3(ajxoData.position);
+		ajxo.transform.position = PointToVector3(ajxoData.position);
 		for(int i=0; i<nbCubes; i++)
 		{
-			pAjxo.GetCube(i).transform.position = PointToVector3(blockPositions[i]);
+			ajxo.GetCube(i).transform.position = PointToVector3(blockPositions[i]);
 		}
 
 		return true;
 	}
 
-	public void SerializeAjxo(Ajxo pAjxo)
+	public void SerializeAjxo()
 	{
-		AjxoData ajxoData;
-		ajxoData.name = pAjxo.name;
-		ajxoData.position = Vector3ToPoint(pAjxo.transform.position);
+		Ajxo ajxo = SerializedAjxo;
 
-		int nbCubes = pAjxo.NbCubes;
+		AjxoData ajxoData;
+		ajxoData.name = ajxo.name;
+		ajxoData.position = Vector3ToPoint(ajxo.transform.position);
+
+		int nbCubes = ajxo.NbCubes;
 		Point[] blockPositions = new Point[nbCubes];
 		for(int i=0; i<nbCubes; i++)
 		{
-			blockPositions[i] = Vector3ToPoint(pAjxo.GetCube(i).transform.position);
+			blockPositions[i] = Vector3ToPoint(ajxo.GetCube(i).transform.position);
 		}
 		ajxoData.blockPositions = blockPositions;
 

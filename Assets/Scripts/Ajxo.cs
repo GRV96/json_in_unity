@@ -4,26 +4,12 @@ using UnityEngine;
 public class Ajxo : MonoBehaviour
 {
 	[SerializeField] private GameObject[] _cubes;
-	private AjxoSerializer _serializer;
 
 	public int NbCubes
 	{
 		get
 		{
 			return _cubes.Length;
-		}
-	}
-
-	private AjxoSerializer Serializer
-	{
-		get
-		{
-			if(_serializer == null)
-			{
-				_serializer = GetComponent<AjxoSerializer>();
-			}
-
-			return _serializer;
 		}
 	}
 
@@ -35,25 +21,5 @@ public class Ajxo : MonoBehaviour
 		}
 
 		return _cubes[pCubeIndex];
-	}
-
-	public void ReadJson()
-	{
-		AjxoSerializer serializer = Serializer;
-
-		if(serializer)
-		{
-			serializer.ReadAjxo(this);
-		}
-	}
-
-	public void WriteAsJson()
-	{
-		AjxoSerializer serializer = Serializer;
-
-		if(serializer)
-		{
-			serializer.SerializeAjxo(this);
-		}
 	}
 }

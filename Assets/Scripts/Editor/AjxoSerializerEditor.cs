@@ -1,22 +1,22 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Ajxo))]
-public class AjxoEditor : Editor
+[CustomEditor(typeof(AjxoSerializer))]
+public class AjxoSerializerEditor : Editor
 {
 	public override void OnInspectorGUI()
 	{
-		Ajxo ajxo = (Ajxo) target;
+		AjxoSerializer ajxoSerializer = (AjxoSerializer) target;
 		DrawDefaultInspector();
 
 		if(GUILayout.Button("Read JSON"))
 		{
-			ajxo.ReadJson();
+			ajxoSerializer.ReadAjxo();
 		}
 
 		if(GUILayout.Button("Save as JSON"))
 		{
-			ajxo.WriteAsJson();
+			ajxoSerializer.SerializeAjxo();
 		}
 	}
 }
