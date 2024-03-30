@@ -5,11 +5,11 @@
 Ce dépôt constitue un exemple de sérialisation et de désérialisation JSON dans
 Unity. Suivez les instructions ci-dessous en mode scène pour observer le résultat.
 
-1. Sélectionner l'objet `Ajxo` dans la hiérarchie.
+1. Sélectionnez l'objet `Ajxo` dans la hiérarchie.
 2. Cliquez sur le bouton `Save as JSON` du composant `AjxoSerializer`.
 3. Déplacez les objets `Ajxo`, `BlueCube`, `GreenCube` et `RedCube` à des
 positions quelconques.
-4. Sélectionner l'objet `Ajxo` dans la hiérarchie.
+4. Sélectionnez l'objet `Ajxo` dans la hiérarchie.
 5. Cliquez sur le bouton `Read JSON` du composant `AjxoSerializer`.
 
 Tous les objets seront retournés à leur position originale.
