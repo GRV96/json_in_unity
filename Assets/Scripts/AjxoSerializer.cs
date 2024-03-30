@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 
+[RequireComponent(typeof(Ajxo))]
 public class AjxoSerializer : MonoBehaviour
 {
 	[System.Serializable]
